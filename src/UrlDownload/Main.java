@@ -14,21 +14,26 @@ public class Main {
             System.out.println("Main starting up...");
             //URL auslesen
             URL myUrl = new URL("https://de.wikipedia.org/wiki/Objektorientierte_Programmierung");
+            //isr liest characters von einem byte stream
             InputStreamReader isr = new InputStreamReader(myUrl.openStream());
+            //zeilenweise auslesen
             BufferedReader br = new BufferedReader(isr);
+            //neue file objekte erstellen
             File file= new File("content.html");
             FileWriter fileWriter = new FileWriter(file);
             PrintWriter printWriter = new PrintWriter(fileWriter);
             String one_line;
-            //jede zeile von website -> auf konsole
+            //jede zeile von website -> auf content.html
             while((one_line = br.readLine()) !=null) {
-                printWriter.println(one_line);
+                printWriter.println(one_line); //println - neue zeile
 //                System.out.println(one_line);
             }
             br.close();
+            //schließen das file
             printWriter.flush();
             printWriter.close();
         } catch (IOException e) {
+            //fangen wir exceptions und geben wir aus
             throw new RuntimeException(e);
         }
     }
